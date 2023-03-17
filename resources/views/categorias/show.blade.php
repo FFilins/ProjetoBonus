@@ -2,12 +2,7 @@
 
 @section('content')
 <div class="container">
-    @php
-    if(!isset($_SESSION)){
-      session_start();
-    }
-    @endphp
-    @if(isset($_SESSION['autenticado']) && $_SESSION['autenticado'] == true && $_SESSION['administrador'] == true)
+    @auth
     <div class="row">
         <div class="col-2">
 
@@ -19,7 +14,7 @@
     
         </div>
     </div>
-    @endif
+    @endauth
 
     <div class="row">
         <div class="col-md-12">

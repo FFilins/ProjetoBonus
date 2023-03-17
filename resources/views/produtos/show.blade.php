@@ -2,12 +2,7 @@
 
 @section('content')
 <div class="container">
-    @php
-    if(!isset($_SESSION)){
-      session_start();
-    }
-    @endphp
-    @if(isset($_SESSION['autenticado']) && $_SESSION['autenticado'] == true && $_SESSION['administrador'] == true)
+    @auth
     <div class="row">
         <div class="col-2">
 
@@ -19,7 +14,7 @@
     
         </div>
     </div>
-    @endif
+    @endauth
 
     <div class="row">
         <div class="col-md-12">
@@ -29,7 +24,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Nome</th>
                     <th scope="col">Preco</th>
-                    <th scope="col">Peso</th>
+                    <th scope="col">Peso(g)</th>
                     <th scope="col">Quantidade</th>
                     <th scope="col">Categoria</th>
                     @auth

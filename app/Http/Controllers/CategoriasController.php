@@ -22,47 +22,22 @@ class CategoriasController extends Controller
     public function createView( Request $request)
     {
 
-        session_start();
-        if(isset($_SESSION['autenticado']) && $_SESSION['autenticado'] == true) {
-            if($_SESSION['administrador'] == true){
-                return view('categorias.create');
+        return view('categorias.create');
 
-            }else {
-                flash('Você não tem permissão para Criar novas categorias')->error();
-                return redirect()->back();
-            }
-        }else {
-            flash('Você não tem permissão para Criar novas categorias')->error();
-            return redirect()->back();
-        }
     }
 
     public function updateView( Request $request , $categoriaId)
     {
 
+                
+        $categoria = Categoria::find($categoriaId);
 
-        session_start();
-        if(isset($_SESSION['autenticado']) && $_SESSION['autenticado'] == true) {
-            if($_SESSION['administrador'] == true){
-                        
-                $categoria = Categoria::find($categoriaId);
-
-                if(!$categoria)
-                {
-                    flash('categoria nao encontrada')->error();
-                    return redirect()->back();
-                }
-                return view('categorias.update')->with(compact('categoria'));
-
-            }else {
-                flash('Você não tem permissão para Atualizar as categorias')->error();
-                return redirect()->back();
-            }
-    
-        }else {
-            flash('Você não tem permissão para Atualizar as categorias')->error();
+        if(!$categoria)
+        {
+            flash('categoria nao encontrada')->error();
             return redirect()->back();
         }
+        return view('categorias.update')->with(compact('categoria'));
 
     }
 
@@ -94,37 +69,25 @@ class CategoriasController extends Controller
     public function delete( Request $request, $categoriaId)
     {
 
+        try{
+            $categoria = Categoria::find($categoriaId);
 
-        session_start();
-        if(isset($_SESSION['autenticado']) && $_SESSION['autenticado'] == true) {
-            if($_SESSION['administrador'] == true){
-                try{
-                    $categoria = Categoria::find($categoriaId);
+            if(!$categoria){
+                throw new Exception('Server Error : categoria nao encontrada');
+            }
+            
 
-                    if(!$categoria){
-                        throw new Exception('Server Error : categoria nao encontrada');
-                    }
-                    
+            $deletedCategory = $categoria->delete();
 
-                    $deletedCategory = $categoria->delete();
-
-                    if($deletedCategory)
-                    {
-                    
-                        flash('Categoria deletada com sucesso')->success();
-                        return redirect()->back();
-                    }
-                }catch(Exception $e)
-                {
-                    flash($e->getMessage())->error();
-                    return redirect()->back();
-                }
-            }else {
-                flash('Você não tem permissão para Deletar categorias')->error();
+            if($deletedCategory)
+            {
+            
+                flash('Categoria deletada com sucesso')->success();
                 return redirect()->back();
             }
-        }else {
-            flash('Você não tem permissão para Deletar categorias')->error();
+        }catch(Exception $e)
+        {
+            flash($e->getMessage())->error();
             return redirect()->back();
         }
     }

@@ -18,7 +18,7 @@
                     <div id="emailHelp" class="form-text">Digite aqui o preço do produto.</div>
                   </div>
                   <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Peso</label>
+                    <label for="exampleInputEmail1" class="form-label">Peso(g)</label>
                     <input type="text" class="form-control" name="peso" id="produto" aria-describedby="emailHelp">
                     <div id="emailHelp" class="form-text">Digite aqui o peso do produto.</div>
                   </div>

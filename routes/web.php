@@ -36,18 +36,28 @@ Route::get('/cadastro/logout' , [LoginController::class, 'logout'])->name('login
 
 
 Route::get('/categorias' , [CategoriasController::class, 'show'])->name('categorias.show');
-Route::get('/categoria/create' , [CategoriasController::class, 'createView'])->name('categoria.createView');
-Route::post('/categoria/create' , [CategoriasController::class, 'create'])->name('categoria.create');
-Route::get('/categoria/update/{categoriaId}' , [CategoriasController::class, 'updateView'])->name('categoria.updateView');
-Route::post('/categoria/update/{categoriaId}', [CategoriasController::class, 'update'])->name('categoria.update');
-Route::post('/categoria/{categoriaId}' , [CategoriasController::class , 'delete'])->name('categoria.delete');
+Route::get('/categoria/create' , [CategoriasController::class, 'createView'])->name('categoria.createView')
+->middleware('auth');
+Route::post('/categoria/create' , [CategoriasController::class, 'create'])->name('categoria.create')
+->middleware('auth');
+Route::get('/categoria/update/{categoriaId}' , [CategoriasController::class, 'updateView'])->name('categoria.updateView')
+->middleware('auth');
+Route::post('/categoria/update/{categoriaId}', [CategoriasController::class, 'update'])->name('categoria.update')
+->middleware('auth');
+Route::post('/categoria/{categoriaId}' , [CategoriasController::class , 'delete'])->name('categoria.delete')
+->middleware('auth');
 
 
 Route::get('/produtos' , [ProdutosController::class, 'show'])->name('produtos.show');
-Route::get('/produtos/create' , [ProdutosController::class , 'createView'])->name('produto.createView');
-Route::post('/produto/create' , [ProdutosController::class, 'create'])->name('produto.create');
-Route::get('/produtos/update/{produtoId}' , [ProdutosController::class , 'updateView'])->name('produto.updateView');
-Route::post('/produtos/update/{produtoID}' , [ProdutosController::class, 'update'])->name('produto.update');
-Route::post('/produto/{produtoId}' , [ProdutosController::class , 'delete'])->name('produto.delete');
+Route::get('/produtos/create' , [ProdutosController::class , 'createView'])->name('produto.createView')
+->middleware('auth');
+Route::post('/produto/create' , [ProdutosController::class, 'create'])->name('produto.create')
+->middleware('auth');
+Route::get('/produtos/update/{produtoId}' , [ProdutosController::class , 'updateView'])->name('produto.updateView')
+->middleware('auth');
+Route::post('/produtos/update/{produtoID}' , [ProdutosController::class, 'update'])->name('produto.update')
+->middleware('auth');
+Route::post('/produto/{produtoId}' , [ProdutosController::class , 'delete'])->name('produto.delete')
+->middleware('auth');
 
 

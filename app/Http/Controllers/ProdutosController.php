@@ -12,19 +12,8 @@ class ProdutosController extends Controller
 
     public function createView( Request $request)
     {
-        session_start();
-        if(isset($_SESSION['autenticado']) && $_SESSION['autenticado'] == true) {
-            if($_SESSION['administrador'] == true){
-                $categorias = Categoria::all();
-                return view('produtos.create')->with(compact('categorias'));
-            }else {
-                flash('Você não tem permissão para Criar novos produtos')->error();
-                return redirect()->back();
-            }
-        }else {
-            flash('Você não tem permissão para Criar novos produtos')->error();
-            return redirect()->back();
-        }
+        $categorias = Categoria::all();
+        return view('produtos.create')->with(compact('categorias'));
         
     }
     public function show( Request $request)
@@ -36,36 +25,23 @@ class ProdutosController extends Controller
 
     public function updateView( Request $request , $produtoId)
     {
-        session_start();
-        if(isset($_SESSION['autenticado']) && $_SESSION['autenticado'] == true) {
-            if($_SESSION['administrador'] == true){
-
                         
-                $produto = Produto::find($produtoId);
-                
-                if(!$produto)
-                {
-                    flash('produto não encontrado')->error();
-                    return redirect()->back();
-                }
-
-                $categorias = Categoria::all();
-
-                if(!$categorias)
-                {
-                    flash('Categorias não encontradas')->error();
-                    return redirect()->back();
-                }
-                return view('produtos.update')->with(compact('produto', 'categorias'));
-
-            }else {
-                flash('Você não tem permissão para atualizar os produtos')->error();
-                return redirect()->back();
-            }
-        }else {
-            flash('Você não tem permissão para atualizar os produtos')->error();
+        $produto = Produto::find($produtoId);
+        
+        if(!$produto)
+        {
+            flash('produto não encontrado')->error();
             return redirect()->back();
         }
+
+        $categorias = Categoria::all();
+
+        if(!$categorias)
+        {
+            flash('Categorias não encontradas')->error();
+            return redirect()->back();
+        }
+        return view('produtos.update')->with(compact('produto', 'categorias'));
 
     }
 
@@ -100,42 +76,29 @@ class ProdutosController extends Controller
     public function delete( Request $request, $produtoId)
     {
 
-        session_start();
-        if(isset($_SESSION['autenticado']) && $_SESSION['autenticado'] == true) {
-            if($_SESSION['administrador'] == true){
-                try{
-                    $produto = Produto::find($produtoId);
-        
-                    if(!$produto){
-                        throw new Exception('Server Error : produto não encontrado');
-                    }
-                    
-        
-                    $deletedProduto = $produto->delete();
-        
-                    if($deletedProduto)
-                    {
-                    
-                        flash('Produto deletada com sucesso')->success();
-                        return redirect()->back();
-                    }else {
-                        throw new Exception('Server Error : produto não deletado, erro desconhecido');
-                    }
-                }catch(Exception $e)
-                {
-                    flash($e->getMessage())->error();
-                    return redirect()->back();
-                }
-            }else {
-                flash('Você não tem permissão para Deletar produtos')->error();
-                return redirect()->back();
+        try{
+            $produto = Produto::find($produtoId);
+
+            if(!$produto){
+                throw new Exception('Server Error : produto não encontrado');
             }
-        }else {
-            flash('Você não tem permissão para Deletar produtos')->error();
+            
+
+            $deletedProduto = $produto->delete();
+
+            if($deletedProduto)
+            {
+            
+                flash('Produto deletada com sucesso')->success();
+                return redirect()->back();
+            }else {
+                throw new Exception('Server Error : produto não deletado, erro desconhecido');
+            }
+        }catch(Exception $e)
+        {
+            flash($e->getMessage())->error();
             return redirect()->back();
         }
-
-        
 
     }
 
