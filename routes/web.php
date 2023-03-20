@@ -37,27 +37,27 @@ Route::get('/cadastro/logout' , [LoginController::class, 'logout'])->name('login
 
 Route::get('/categorias' , [CategoriasController::class, 'show'])->name('categorias.show');
 Route::get('/categoria/create' , [CategoriasController::class, 'createView'])->name('categoria.createView')
-->middleware('auth');
+->middleware(['auth', 'IsAdmin']);
 Route::post('/categoria/create' , [CategoriasController::class, 'create'])->name('categoria.create')
-->middleware('auth');
+->middleware(['auth', 'IsAdmin']);
 Route::get('/categoria/update/{categoriaId}' , [CategoriasController::class, 'updateView'])->name('categoria.updateView')
-->middleware('auth');
+->middleware(['auth', 'IsAdmin']);
 Route::post('/categoria/update/{categoriaId}', [CategoriasController::class, 'update'])->name('categoria.update')
-->middleware('auth');
+->middleware(['auth', 'IsAdmin']);
 Route::post('/categoria/{categoriaId}' , [CategoriasController::class , 'delete'])->name('categoria.delete')
-->middleware('auth');
+->middleware(['auth', 'IsAdmin']);
 
 
 Route::get('/produtos' , [ProdutosController::class, 'show'])->name('produtos.show');
 Route::get('/produtos/create' , [ProdutosController::class , 'createView'])->name('produto.createView')
-->middleware('auth');
+->middleware(['auth', 'IsAdmin']);
 Route::post('/produto/create' , [ProdutosController::class, 'create'])->name('produto.create')
-->middleware('auth');
+->middleware(['auth', 'IsAdmin']);
 Route::get('/produtos/update/{produtoId}' , [ProdutosController::class , 'updateView'])->name('produto.updateView')
-->middleware('auth');
+->middleware(['auth', 'IsAdmin']);
 Route::post('/produtos/update/{produtoID}' , [ProdutosController::class, 'update'])->name('produto.update')
-->middleware('auth');
+->middleware(['auth', 'IsAdmin']);
 Route::post('/produto/{produtoId}' , [ProdutosController::class , 'delete'])->name('produto.delete')
-->middleware('auth');
+->middleware(['auth', 'IsAdmin']);
 
 

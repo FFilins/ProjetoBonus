@@ -3,6 +3,7 @@
 @section('content')
 <div class="container">
     @auth
+    @if(Auth::user()->admin)
     <div class="row">
         <div class="col-2">
 
@@ -14,6 +15,7 @@
     
         </div>
     </div>
+    @endif
     @endauth
 
     <div class="row">
@@ -35,6 +37,8 @@
                         <td>{{$categoria->nome}}</td>
 
                         @auth
+                        @if(Auth::user()->admin)
+
                         <td>
                             <div class="row">
                                 <form action="{{route('categoria.delete' , $categoria->id)}}" method="POST">
@@ -53,6 +57,7 @@
                             </div>
                           
                         </td>
+                        @endif
                         @endauth
                         
                       </tr>

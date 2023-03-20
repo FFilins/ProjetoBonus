@@ -3,6 +3,7 @@
 @section('content')
 <div class="container">
     @auth
+    @if(Auth::user()->admin)
     <div class="row">
         <div class="col-2">
 
@@ -14,6 +15,7 @@
     
         </div>
     </div>
+    @endif
     @endauth
 
     <div class="row">
@@ -44,6 +46,8 @@
                             <td>{{$produto->categoria()->first()->nome}}</td>
 
                             @auth
+                            @if(Auth::user()->admin)
+
                             <td>
 
                                 <div class="row">
@@ -63,6 +67,7 @@
                                 </div>
                             
                             </td>
+                            @endif
                             @endauth
                             
                         </tr>

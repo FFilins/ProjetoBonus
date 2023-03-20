@@ -14,9 +14,7 @@
 </head>
 <body>
 @php
-    if(!isset($_SESSION)){
-      session_start();
-    }
+use Illuminate\Support\Facades\Auth;
 @endphp
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
