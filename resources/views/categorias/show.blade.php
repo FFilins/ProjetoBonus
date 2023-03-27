@@ -5,7 +5,7 @@
     @auth
     @if(Auth::user()->admin)
     <div class="row">
-        <div class="col-2">
+        <div class="col-2 mb-2">
 
             <form action="{{route('categoria.createView')}}">
                 <button  type="submit"  class="btn btn-primary">
@@ -20,13 +20,13 @@
 
     <div class="row">
         <div class="col-md-12">
-            <table class="table">
-                <thead>
+            <table class="table table-hover">
+                <thead class="table-primary">
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">Nome</th>
                     @auth
-                    <th scope="col2">Actions</th>
+                    <th scope="col">Actions</th>
                     @endauth
                   </tr>
                 </thead>
@@ -38,25 +38,15 @@
 
                         @auth
                         @if(Auth::user()->admin)
-
-                        <td>
-                            <div class="row">
-                                <form action="{{route('categoria.delete' , $categoria->id)}}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="btn btn-danger">
-                                        Delete  
-                                    </button> 
-                                </form>
-                                <td>
-                            
-                                    <a href="{{route('categoria.updateView' , $categoria->id)}}"  class="btn btn-warning">
-                                        update  
-                                    </a> 
-                              
-                                </td>
-                            </div>
+                            <td>
+                                <a href="{{route('categoria.delete' , $categoria->id)}}" class="btn btn-danger">
+                                    Delete  
+                                </a>
+                                <a href="{{route('categoria.updateView' , $categoria->id)}}"  class="btn btn-warning">
+                                    update  
+                                </a> 
+                            </td>
                           
-                        </td>
                         @endif
                         @endauth
                         

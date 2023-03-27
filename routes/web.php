@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 Route::get('/login' , [LoginController::class, 'loginShow'])->name('login.show');
 Route::get('/cadastro' , [LoginController::class, 'cadastroShow'])->name('cadastro.show');

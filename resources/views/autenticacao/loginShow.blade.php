@@ -7,8 +7,9 @@
     }
 @endphp --}}
 @section('content')
-<div class="row">
-  <div class="col col-md12 col-lg-6">
+
+<div class="row justify-content-center">
+  <div class="col col-md12 col-md-6">
     <form action="{{route('login.autenticar')}}" method="post">
       @csrf
         <!-- Email input -->
@@ -24,11 +25,11 @@
         </div>
       
         <!-- Submit button -->
-        <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+        <button type="submit" class="btn btn-primary btn-block mb-4">Entrar</button>
       
         <!-- Register buttons -->
         <div class="text-center">
-          <p>Not a member? <a href="#!">Register</a></p>
+          <p>Ainda não é membro? <a href="{{route('cadastro.show')}}">Cadastre-se</a></p>
         </div>
       </form>
   </div>

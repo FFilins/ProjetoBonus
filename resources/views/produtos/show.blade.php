@@ -5,7 +5,7 @@
     @auth
     @if(Auth::user()->admin)
     <div class="row">
-        <div class="col-2">
+        <div class="col-2 mb-2">
 
             <form action="{{route('produto.createView')}}">
                 <button  type="submit"  class="btn btn-primary">
@@ -20,8 +20,8 @@
 
     <div class="row">
         <div class="col-md-12">
-            <table class="table">
-                <thead>
+            <table class="table table-striped table-hover">
+                <thead class="table-primary">
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">Nome</th>
@@ -30,7 +30,7 @@
                     <th scope="col">Quantidade</th>
                     <th scope="col">Categoria</th>
                     @auth
-                    <th scope="col2">Actions</th>
+                    <th scope="col">Actions</th>
                     @endauth
                   </tr>
                 </thead>
@@ -44,31 +44,25 @@
                             <td>{{$produto->peso}}</td>
                             <td>{{$produto->quantidade}}</td>
                             <td>{{$produto->categoria()->first()->nome}}</td>
-
+                            <div class="row">
                             @auth
-                            @if(Auth::user()->admin)
+                                <td>    
+                                    <a href="{{route('produto.updateView' , $produto->id)}}"  class="btn btn-info">
+                                        Adicionar ao Carrinho  
+                                    </a> 
+                                    @if(Auth::user()->admin)
 
-                            <td>
+                                    <a href="{{route('produto.updateView' , $produto->id)}}"  class="btn btn-warning">
+                                        update  
+                                    </a> 
 
-                                <div class="row">
-                                    <form action="{{route('produto.delete' , $produto->id)}}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger">
-                                            Delete  
-                                        </button> 
-                                    </form>
-                                    <td>
-                                
-                                        <a href="{{route('produto.updateView' , $produto->id)}}"  class="btn btn-warning">
-                                            update  
-                                        </a> 
-                                
-                                    </td>
-                                </div>
-                            
-                            </td>
-                            @endif
+                                    <a href="{{route('produto.delete' , $produto->id)}}" class="btn btn-danger">
+                                        Delete
+                                    </a>
+                                    @endif
+                                </td>
                             @endauth
+                            </div>
                             
                         </tr>
                         @endforeach

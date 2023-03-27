@@ -1,7 +1,7 @@
 @extends('layout.layout')
 
 @section('content')
-<div class="row">
+<div class="row justify-content-center">
   <div class="col col-md-12 col-lg-6">
     <form action="{{route('login.cadastro')}}" method="post">
       @csrf
