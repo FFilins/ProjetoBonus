@@ -47,7 +47,7 @@
                             <div class="row">
                             @auth
                                 <td>    
-                                    <a href="{{route('produto.updateView' , $produto->id)}}"  class="btn btn-info">
+                                    <a href="{{route('venda.addProdutoCarrinho' , $produto->id)}}"  class="btn btn-info">
                                         Adicionar ao Carrinho  
                                     </a> 
                                     @if(Auth::user()->admin)

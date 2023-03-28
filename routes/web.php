@@ -4,6 +4,7 @@ use App\Http\Controllers\AutenticacaoController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\ProdutosController;
+use App\Http\Controllers\VendaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,4 +61,7 @@ Route::post('/produtos/update/{produtoID}' , [ProdutosController::class, 'update
 Route::post('/produto/{produtoId}' , [ProdutosController::class , 'delete'])->name('produto.delete')
 ->middleware(['auth', 'IsAdmin']);
 
-
+Route::get('/carrinho/{produtoId}' , [VendaController::class, 'addProdutoCarrinho'])->name('venda.addProdutoCarrinho')
+->middleware('auth');
+Route::get('/carrinho' , [VendaController::class, 'CarrinhoUpdateView'])->name('venda.carrinhoUpdate')
+->middleware('auth');
