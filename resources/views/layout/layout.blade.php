@@ -34,6 +34,9 @@ use Illuminate\Support\Facades\Auth;
               <li class="nav-item">
                 <a class="nav-link" href="{{route('categorias.show')}}">Categorias</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{route('venda.carrinhoUpdateView')}}">Carrinho</a>
+              </li>
             </ul>
               
             <ul class="navbar-nav mr-auto mb-2 mb-lg-0">

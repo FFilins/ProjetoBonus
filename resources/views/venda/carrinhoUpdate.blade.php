@@ -5,8 +5,6 @@
 <div class="row justify-content-center">
     <div class="col col-md-10">
       <h1 class="text-center">Carrinho</h1>
-      <form action="{{route('login.autenticar')}}" method="post">
-        @csrf
         <table class="table table-hover">
           <thead>
             <tr>
@@ -32,7 +30,6 @@
               <td>
                 <div class="form-outline" style="width: 15rem;">
                   <input min="{{$produtoCarrinho->quantidade}}" max="{{$produtoCarrinho->produtos()->first()->quantidade}}" type="number" id="typeNumber" name="quantidade" class="form-control" />
-                  <label class="form-label" for="typeNumber">Number input</label>
                 </div>
               </td>
               <td>
@@ -40,13 +37,11 @@
                     @csrf
                     <button type="submit" class="btn btn-danger">Excluir</button>
                 </form>
-                <button class="btn btn-info">teste</button>
               </td>
             </tr> 
             @endforeach
           </tbody>
         </table>
-      </form>
     </div>
   </div>
   
