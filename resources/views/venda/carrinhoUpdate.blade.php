@@ -29,18 +29,19 @@
               <td>{{$produtoCarrinho->produtos()->first()->preco}}</td>
               <td>{{$produtoCarrinho->produtos()->first()->peso}}</td>
               <td>{{$produtoCarrinho->produtos()->first()->Categoria()->first()->nome}}</td>
-              <form action="">
-                <td>
-                  <div class="form-outline" style="width: 15rem;">
-                    <input min="{{$produtoCarrinho->quantidade}}" max="{{$produtoCarrinho->produtos()->first()->quantidade}}" type="number" id="typeNumber" name="quantidade" class="form-control" />
-                    <label class="form-label" for="typeNumber">Number input</label>
+              <td>
+                <div class="form-outline" style="width: 15rem;">
+                  <input min="{{$produtoCarrinho->quantidade}}" max="{{$produtoCarrinho->produtos()->first()->quantidade}}" type="number" id="typeNumber" name="quantidade" class="form-control" />
+                  <label class="form-label" for="typeNumber">Number input</label>
                 </div>
-                </td>
-                <td>
-                  
-                </td>
-              </form>
-              
+              </td>
+              <td>
+                <form method="POST" action="{{route('venda.delete', $produtoCarrinho->id)}}">
+                    @csrf
+                    <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
+                <button class="btn btn-info">teste</button>
+              </td>
             </tr> 
             @endforeach
           </tbody>

@@ -61,7 +61,10 @@ Route::post('/produtos/update/{produtoID}' , [ProdutosController::class, 'update
 Route::post('/produto/{produtoId}' , [ProdutosController::class , 'delete'])->name('produto.delete')
 ->middleware(['auth', 'IsAdmin']);
 
-Route::get('/carrinho/{produtoId}' , [VendaController::class, 'addProdutoCarrinho'])->name('venda.addProdutoCarrinho')
+
+Route::post('/carrinho/{produtoId}' , [VendaController::class, 'addProdutoCarrinho'])->name('venda.addProdutoCarrinho')
 ->middleware('auth');
-Route::get('/carrinho' , [VendaController::class, 'CarrinhoUpdateView'])->name('venda.carrinhoUpdate')
+Route::get('/carrinho/update' , [VendaController::class, 'carrinhoUpdateView'])->name('venda.carrinhoUpdateView')
+->middleware('auth');
+Route::post('/carrinho/delete/{produtoCarrinhoId}' , [VendaController::class, 'delete'])->name('venda.delete')
 ->middleware('auth');

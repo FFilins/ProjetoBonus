@@ -46,10 +46,11 @@
                             <td>{{$produto->categoria()->first()->nome}}</td>
                             <div class="row">
                             @auth
-                                <td>    
-                                    <a href="{{route('venda.addProdutoCarrinho' , $produto->id)}}"  class="btn btn-info">
-                                        Adicionar ao Carrinho  
-                                    </a> 
+                                <td>
+                                    <form method="POST" action="{{route('venda.addProdutoCarrinho', $produto->id)}}">
+                                        @csrf
+                                        <button type="submit" class="btn btn-info">Add on Carrinho </button>
+                                    </form>
                                     @if(Auth::user()->admin)
 
                                     <a href="{{route('produto.updateView' , $produto->id)}}"  class="btn btn-warning">
