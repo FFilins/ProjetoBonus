@@ -11,6 +11,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
+  @livewireStyles
+
 </head>
 <body>
 @php
@@ -64,4 +66,5 @@ use Illuminate\Support\Facades\Auth;
   @yield('content')
 
 </body>
+@livewireScripts
 </html>

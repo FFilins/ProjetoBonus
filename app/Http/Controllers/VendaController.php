@@ -38,8 +38,13 @@ class VendaController extends Controller
     public function carrinhoUpdateView(Request $request) {
 
         $produtosCarrinho = Venda::all();
+        
 
         return view('venda.carrinhoUpdate')->with(compact('produtosCarrinho'));
+
+        // $produtosCarrinho = Venda::where('user_id', Auth::user()->id)->get();
+
+        // return view('livewire.venda')->with(compact('produtosCarrinho'));
 
     }
 
@@ -66,6 +71,41 @@ class VendaController extends Controller
             flash($e->getMessage())->error();
             return redirect()->back();
         }
+
+
+    }
+
+    public function carrinhoUpdate(Request $request, $produtosId, $produtosQuantidade) {
+
+        // try{
+
+            dd($request);
+            dd($produtosId);
+            dd($produtosQuantidade);
+
+        //     $produtoCarrinho = Produto::find($produtoId);
+
+        //     if(!$produtoCarrinho){
+        //         throw new Exception('Server Error : Produto não encontrado');
+        //     }
+    
+        //     $produtoCarrinho->nome = $request->nome;
+
+
+        //     $updatedProduto = $produto->update();
+
+        //     if(!$updatedProduto)
+        //     {
+        //         throw new Exception('Server error : erro em atualizar produto');
+        //     }
+
+        //     flash('Produto atualizado com sucesso')->success();
+        //     return redirect()->route('produtos.show');
+        // }catch(Exception $e)
+        // {
+        //     flash($e->getMessage())->error();
+        //     return redirect()->back();
+        // }
 
 
     }

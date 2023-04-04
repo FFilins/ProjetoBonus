@@ -68,3 +68,5 @@ Route::get('/carrinho/update' , [VendaController::class, 'carrinhoUpdateView'])-
 ->middleware('auth');
 Route::post('/carrinho/delete/{produtoCarrinhoId}' , [VendaController::class, 'delete'])->name('venda.delete')
 ->middleware('auth');
+Route::post('carrinho/update/{produtoId&&produtoQuantidade}' , [VendaController::class , 'carrinhoUpdate'])
+->name('venda.carrinhoUpdate')->middleware('auth');

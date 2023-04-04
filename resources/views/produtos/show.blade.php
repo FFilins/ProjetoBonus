@@ -49,18 +49,20 @@
                                 <td>
                                     <form method="POST" action="{{route('venda.addProdutoCarrinho', $produto->id)}}">
                                         @csrf
-                                        <button type="submit" class="btn btn-info">Add on Carrinho </button>
+                                        <button type="submit" class="btn btn-info">Add no Carrinho </button>
+
+
+                                        @if(Auth::user()->admin)
+
+                                        <a href="{{route('produto.updateView' , $produto->id)}}"  class="btn btn-warning">
+                                            update  
+                                        </a> 
+
+                                        <a href="{{route('produto.delete' , $produto->id)}}" class="btn btn-danger">
+                                            Delete
+                                        </a>
+                                        @endif
                                     </form>
-                                    @if(Auth::user()->admin)
-
-                                    <a href="{{route('produto.updateView' , $produto->id)}}"  class="btn btn-warning">
-                                        update  
-                                    </a> 
-
-                                    <a href="{{route('produto.delete' , $produto->id)}}" class="btn btn-danger">
-                                        Delete
-                                    </a>
-                                    @endif
                                 </td>
                             @endauth
                             </div>
